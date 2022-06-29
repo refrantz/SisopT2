@@ -22,8 +22,8 @@ public class ParticaoFixa implements Memoria{
     }
 
     @Override
-    public void in(String processo, Integer espaço) {
-        //if(memoriaPartiçãoFixa.size() + espaço > memorySize ){
+    public void in(String processo, Integer espaco) {
+        //if(memoriaPartiçãoFixa.size() + espaco > memorySize ){
             //System.out.println("ESPAÇO INSUFICIENTE DE MEMÓRIA");
         //}
 

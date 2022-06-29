@@ -22,7 +22,7 @@ public class Gerenciamento {
             //memory = new PartiçãoVariavel(memorySize,allocationPolicy)
         }
         if(allocationMethod == 3){
-            //memory = new Buddy(memorySize)
+            memory = new Buddy(memorySize);
         }
 
 
@@ -41,7 +41,7 @@ public class Gerenciamento {
                 if(linha.substring(0, 3).equals("OUT")){
                     command = "OUT";
                     process = linha.charAt(4);
-                    space = "none";
+                    space = "OUT";
 
                     memory.out(Character.toString(process)); //linha que pode ser comum a todos os metodos
                 }else{
