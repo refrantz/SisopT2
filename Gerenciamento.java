@@ -7,7 +7,7 @@ public class Gerenciamento {
 
     public static int memorySize;
     public static int partitionSize; // apenas para o metodo 1;
-    public static int allocationPolicy; //apenas para o metodo 2;
+    public static int allocationPolicy; // 1 = Best-Fit, 2 = Worst-Fit
     public static int allocationMethod; // 1 = Partição fixa, 2 = Partição variavel, 3 = Buddy
 
     public static Memoria memory;
@@ -19,7 +19,7 @@ public class Gerenciamento {
         }
         // Só uma sugestao de como a gente pode fazer pra deixar generico
         if(allocationMethod == 2){
-            //memory = new PartiçãoVariavel(memorySize,allocationPolicy)
+            memory = new ParticaoVariavel(memorySize,allocationPolicy);
         }
         if(allocationMethod == 3){
             memory = new Buddy(memorySize);
