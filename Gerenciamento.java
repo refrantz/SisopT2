@@ -27,13 +27,14 @@ public class Gerenciamento {
 
 
         //lendo arquivo - talvez de pra colocar isso em um metodo(?)
-        System.out.println("Qual o tamanho da memoria?");
         try {
             BufferedReader br = new BufferedReader(new FileReader("exemplo.txt"));
             String linha = br.readLine().strip().toUpperCase();
             String command = "";
             char process = ' ';
             String space = "";
+
+            System.out.println("Pressione enter para continuar a execução passo por passo");
 
             while(linha != null){
 
@@ -51,9 +52,10 @@ public class Gerenciamento {
                     memory.in(Character.toString(process), Integer.parseInt(space)); //linha que pode ser comum a todos os metodos
                 }
 
-                memory.showMemoria();
-                //System.out.println("comando: " + command + " | processo: " + process + " | espaco: " + space);
 
+                System.out.println("comando: " + command + " | processo: " + process + " | espaco: " + space);
+                memory.showMemoria();
+                System.in.read(); // PRESSIONE ENTER PARA VER A PROXIMA EXECUÇÃO E A SUA MEMORIA RESULTANTE
 
                 linha = br.readLine();
                 if(linha != null){
