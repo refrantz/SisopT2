@@ -43,17 +43,17 @@ public class Gerenciamento {
                     process = linha.charAt(4);
                     space = "OUT";
                     memory.showMemoria();
+                    
                     memory.out(Character.toString(process)); //linha que pode ser comum a todos os metodos
                 }else{
                     command = "IN";
                     process = linha.charAt(3);
                     space = linha.substring(6, linha.indexOf(")"));
                     memory.showMemoria();
+                    System.out.println("comando: " + command + " | processo: " + process + " | espaco: " + space);
                     memory.in(Character.toString(process), Integer.parseInt(space)); //linha que pode ser comum a todos os metodos
                 }
 
-
-                System.out.println("comando: " + command + " | processo: " + process + " | espaco: " + space);
                 System.in.read(); // PRESSIONE ENTER PARA VER A PROXIMA EXECUÇÃO E A SUA MEMORIA RESULTANTE
 
                 linha = br.readLine();
