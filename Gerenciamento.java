@@ -43,7 +43,7 @@ public class Gerenciamento {
                     process = linha.charAt(4);
                     space = "OUT";
                     memory.showMemoria();
-                    
+                    System.out.println("comando: " + command + " | processo: " + process + " | espaco: " + space);
                     memory.out(Character.toString(process)); //linha que pode ser comum a todos os metodos
                 }else{
                     command = "IN";
