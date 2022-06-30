@@ -38,23 +38,26 @@ public class Gerenciamento {
 
             while(linha != null){
 
+                //System.out.println("-----------------------------------");
+                
+                System.in.read(); // PRESSIONE ENTER PARA VER A PROXIMA EXECUÇÃO E A SUA MEMORIA RESULTANTE
+
                 if(linha.substring(0, 3).equals("OUT")){
                     command = "OUT";
                     process = linha.charAt(4);
-                    space = "OUT";
-                    memory.showMemoria();
-                    
+                    space = "OUT";   
                     memory.out(Character.toString(process)); //linha que pode ser comum a todos os metodos
                 }else{
                     command = "IN";
                     process = linha.charAt(3);
                     space = linha.substring(6, linha.indexOf(")"));
-                    memory.showMemoria();
-                    System.out.println("comando: " + command + " | processo: " + process + " | espaco: " + space);
                     memory.in(Character.toString(process), Integer.parseInt(space)); //linha que pode ser comum a todos os metodos
                 }
 
-                System.in.read(); // PRESSIONE ENTER PARA VER A PROXIMA EXECUÇÃO E A SUA MEMORIA RESULTANTE
+                System.out.println("comando: " + command + " | processo: " + process + " | espaco: " + space);
+                memory.showMemoria();
+                System.out.println();
+                System.out.println("-----------------------------------");
 
                 linha = br.readLine();
                 if(linha != null){
