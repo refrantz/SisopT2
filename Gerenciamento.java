@@ -28,7 +28,7 @@ public class Gerenciamento {
 
         //lendo arquivo - talvez de pra colocar isso em um metodo(?)
         try {
-            BufferedReader br = new BufferedReader(new FileReader("exemplo.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("exemplo1.txt"));
             String linha = br.readLine().strip().toUpperCase();
             String command = "";
             char process = ' ';

@@ -14,14 +14,39 @@ public class ParticaoFixa implements Memoria{
         Arrays.fill(memoriaPartiçãoFixa,"EMPTY");
     }
 
-    @Override
-    public void showMemoria() {
-        System.out.println(Arrays.toString(memoriaPartiçãoFixa));
-        System.out.println("-------------------");
+
+    public void showMemoria2() {
+        System.out.println("------------------------");
         for(int i = 0; i<memoriaPartiçãoFixa.length;i++){
             System.out.println(i + "|      " + memoriaPartiçãoFixa[i] + "          |");
-            System.out.println("-------------------");
+            System.out.println("------------------------");
         }
+    }
+
+    @Override
+    public void showMemoria() {
+        ArrayList<Integer> espacosLivres = new ArrayList<Integer>();
+        int contador = 0;
+
+        for(int i = 0; i < memorySize; i++){
+           if (memoriaPartiçãoFixa[i].equals("EMPTY") ||  memoriaPartiçãoFixa[i].equals("X")){
+               contador++;
+           }else{
+               if(contador != 0){
+                   espacosLivres.add(contador);
+               }
+               contador = 0;
+           }
+       }
+        espacosLivres.add(contador);
+        showMemoria2();
+
+        String posicoesLivre = "|";
+        for (Integer espacoLivre: espacosLivres) {
+            posicoesLivre = posicoesLivre + (" " + espacoLivre + " |");
+        }
+        System.out.println(posicoesLivre);
+
     }
 
     @Override
@@ -34,6 +59,10 @@ public class ParticaoFixa implements Memoria{
             if(memoriaPartiçãoFixa[i] == "EMPTY"){
                 done = true;
                 for(int j = 0; j<partitionSize;j++){
+                    if(i+espaco > memorySize){
+                        System.out.println("\"ESPAÇO INSUFICIENTE DE MEMÓRIA\"");
+                        return;
+                    }
                     if(j>=espaco){
                         memoriaPartiçãoFixa[i+j] = "X";
                     }else{
