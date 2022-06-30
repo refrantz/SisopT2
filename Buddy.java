@@ -24,14 +24,6 @@ public class Buddy implements Memoria{
             return this.processSize == 0 && (this.left == null || this.left.isEmpty()) && (this.right == null || this.right.isEmpty());
         }
 
-        public boolean canCollapse(){
-            if(this.hasChildren){
-                return this.left.isEmpty() && this.right.isEmpty();
-            }else{
-                return true;
-            }
-        }
-
         public void collapse(){
             this.processo = "";
             this.processSize = 0;
@@ -57,7 +49,7 @@ public class Buddy implements Memoria{
             System.out.print("| " + root.size + " |");
         }else if(!root.hasChildren && internalFrag > 0){
             System.out.print("| " + internalFrag + " |");
-        }else{
+        }else if(root.hasChildren){
             showMemoria(root.left);
             showMemoria(root.right);
         }
@@ -72,7 +64,7 @@ public class Buddy implements Memoria{
             System.out.print("| " + next.size + " |");
         }else if(!next.hasChildren && internalFrag > 0){
             System.out.print("| " + internalFrag + " |");
-        }else{
+        }else if(next.hasChildren){
             showMemoria(next.left);
             showMemoria(next.right);
         }
@@ -138,7 +130,7 @@ public class Buddy implements Memoria{
 
     public Node split(Integer espaco, Node splitCurrent){
 
-        if(espaco <= splitCurrent.size/2){
+        if(espaco <= splitCurrent.size/2 && splitCurrent.size/2 > 1){
 
             this.current.left = new Node(splitCurrent.size/2);
             this.current.right = new Node(splitCurrent.size/2);
