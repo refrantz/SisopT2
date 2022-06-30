@@ -10,7 +10,9 @@ public class Buddy implements Memoria{
         Node right;
         Node parent;
         String processo;
+        int processSize;
         int size;
+        boolean hasChildren;
 
         private Node(){
         }
@@ -20,7 +22,7 @@ public class Buddy implements Memoria{
         }
 
         public boolean isEmpty(){
-            return this.size == 0;
+            return this.processSize == 0;
         }
 
         public boolean canCollapse(){
@@ -47,39 +49,95 @@ public class Buddy implements Memoria{
             System.out.println("ESPAÇO INSUFICIENTE DE MEMÓRIA");
         }
 
-        if(espaco > current.size){
+        if (current == null){
+            System.out.println("TODAS PARTICOES PREENCHIDAS");
             
+        }else{
 
+            if(espaco > current.size){
 
-        }else if(espaco == current.size){
-
-            current.processo = processo;
-            current.size = espaco;
-
-            if(current == current.parent.left){
-                current = current.parent.right;
-            }else if(current == current.parent.right){
-                
+                current = findNextCurrent(root, espaco);
+                if(current == null){
+                    System.out.println("ESPAÇO INSUFICIENTE DE MEMÓRIA");
+                }else{
+                    in(processo, espaco);
+                }
+    
+            }else if(espaco == current.size){
+    
+                current.processo = processo;
+                current.processSize = espaco;
+    
+            }else if(espaco < current.size){
+    
+                current = split(espaco, current);
+                current.processo = processo;
+                current.processSize = espaco;
+    
             }
+    
+            current = findNextCurrent(root);
 
-        }else if (espaco < current.size){
+        }
+    }
 
+    public Node split(Integer espaco, Node splitCurrent){
 
+        if(espaco <= splitCurrent.size/2){
 
+            this.current.left = new Node(splitCurrent.size/2);
+            this.current.right = new Node(splitCurrent.size/2);
+
+            this.current.hasChildren = true;
+
+            this.current = this.current.left;
+
+            return split(espaco, this.current);
+
+        }else{
+            return splitCurrent;
         }
 
     }
 
-    public void split(Integer espaco, Node splitCurrent){
+    public Node findNextCurrent(Node nextCurr){
 
-        if(espaco < splitCurrent.size/2){
+        Node retorno;
 
-            this.current.left = new Node();
-            this.current.right = new Node();
-
+        if(nextCurr.isEmpty()){
+            return nextCurr;
+        }else if(nextCurr.hasChildren){
+            retorno = findNextCurrent(nextCurr.left);
+            if(retorno != null){
+                return retorno;
+            }else{
+                return findNextCurrent(nextCurr.right);
+            }
+        }else{
+            return null;
         }
 
     }
+
+    public Node findNextCurrent(Node nextCurr, int espaco){
+
+        Node retorno;
+
+        if(nextCurr.isEmpty() && nextCurr.size >= espaco){
+            return nextCurr;
+        }else if(nextCurr.hasChildren){
+            retorno = findNextCurrent(nextCurr.left);
+            if(retorno != null){
+                return retorno;
+            }else{
+                return findNextCurrent(nextCurr.right);
+            }
+        }else{
+            return null;
+        }
+
+    }
+
 
     @Override
     public void out(String processo) {
