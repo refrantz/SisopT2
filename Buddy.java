@@ -61,12 +61,14 @@ public class Buddy implements Memoria{
         int internalFrag = next.size - next.processSize;
 
         if(next.isEmpty()){
-            System.out.print("| " + next.size + " |");
+            System.out.print("| NODE: " + internalFrag + " |");
         }else if(!next.hasChildren && internalFrag > 0){
-            System.out.print("| " + internalFrag + " |");
+            System.out.print("| NODE: " + internalFrag  + " |");
         }else if(next.hasChildren){
             showMemoria(next.left);
             showMemoria(next.right);
+        }else{
+            System.out.print("| NODE: " + internalFrag  + " |");
         }
 
     }
