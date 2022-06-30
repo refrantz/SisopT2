@@ -47,7 +47,7 @@ public class Gerenciamento {
                 }else{
                     command = "IN";
                     process = linha.charAt(3);
-                    space = linha.substring(6, 8);
+                    space = linha.substring(6, linha.indexOf(")"));
 
                     memory.in(Character.toString(process), Integer.parseInt(space)); //linha que pode ser comum a todos os metodos
                 }

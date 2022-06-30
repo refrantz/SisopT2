@@ -8,6 +8,8 @@ public class Buddy implements Memoria{
 
         Node left;
         Node right;
+        Node parent;
+        String processo;
         int size;
 
         private Node(){
@@ -15,6 +17,14 @@ public class Buddy implements Memoria{
 
         private Node(int size){
             this.size = size;
+        }
+
+        public boolean isEmpty(){
+            return this.size == 0;
+        }
+
+        public boolean canCollapse(){
+            return isEmpty() && left.isEmpty() && right.isEmpty();
         }
 
     }
@@ -37,14 +47,37 @@ public class Buddy implements Memoria{
             System.out.println("ESPAÇO INSUFICIENTE DE MEMÓRIA");
         }
 
-        if(espaco < current.size){
-            current.left = new Node(current.size/2);
-            current.right = new Node(current.size/2);
-            current = current.left;
+        if(espaco > current.size){
+            
+
+
+        }else if(espaco == current.size){
+
+            current.processo = processo;
+            current.size = espaco;
+
+            if(current == current.parent.left){
+                current = current.parent.right;
+            }else if(current == current.parent.right){
+                
+            }
+
+        }else if (espaco < current.size){
+
+
+
         }
 
+    }
 
+    public void split(Integer espaco, Node splitCurrent){
 
+        if(espaco < splitCurrent.size/2){
+
+            this.current.left = new Node();
+            this.current.right = new Node();
+
+        }
 
     }
 
