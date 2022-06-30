@@ -46,12 +46,14 @@ public class Buddy implements Memoria{
         int internalFrag = root.size - root.processSize;
 
         if(root.isEmpty()){
-            System.out.print("| " + root.size + " |");
+            System.out.print("|| LIVRE: " + internalFrag + " | TOTAL: " + root.size + " ||");
         }else if(!root.hasChildren && internalFrag > 0){
-            System.out.print("| " + internalFrag + " |");
+            System.out.print("|| LIVRE: " + internalFrag + " | TOTAL: " + root.size + " ||");
         }else if(root.hasChildren){
             showMemoria(root.left);
             showMemoria(root.right);
+        }else{
+            System.out.print("|| LIVRE: " + internalFrag + " | TOTAL: " + root.size + " ||");
         }
 
     }
@@ -61,14 +63,14 @@ public class Buddy implements Memoria{
         int internalFrag = next.size - next.processSize;
 
         if(next.isEmpty()){
-            System.out.print("| NODE: " + internalFrag + " |");
+            System.out.print("|| LIVRE: " + internalFrag + " | TOTAL: " + next.size + " ||");
         }else if(!next.hasChildren && internalFrag > 0){
-            System.out.print("| NODE: " + internalFrag  + " |");
+            System.out.print("|| LIVRE: " + internalFrag + " | TOTAL: " + next.size + " ||");
         }else if(next.hasChildren){
             showMemoria(next.left);
             showMemoria(next.right);
         }else{
-            System.out.print("| NODE: " + internalFrag  + " |");
+            System.out.print("|| LIVRE: " + internalFrag + " | TOTAL: " + next.size + " ||");
         }
 
     }
